@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   before_save :downcase_email
 
   validates :name, presence: true
@@ -8,4 +9,5 @@ class User < ApplicationRecord
     email.downcase!
   end
   has_secure_password
+
 end

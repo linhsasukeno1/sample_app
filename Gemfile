@@ -28,6 +28,17 @@ gem "bootstrap-sass", "3.4.1"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 
+<<<<<<< chapter7
+=======
+gem "bootstrap-sass", "~>3.4.1"
+
+gem "bcrypt", "3.1.11"
+
+gem "config"
+gem "i18n"
+
+
+>>>>>>> master
 group :development, :test do
   # Call "byebug" anywhere in the code to stop
   # execution and get a debugger console
