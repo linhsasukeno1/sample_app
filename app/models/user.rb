@@ -23,7 +23,6 @@ class User < ApplicationRecord
                      maximum: Settings.user.password.max_length},
             allow_nil: true
   has_secure_password
-
   # public method
 
   # create  token and save  database in column remember_digest
