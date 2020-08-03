@@ -12,6 +12,8 @@
     <%= f.check_box :remember_me %>
     <span>Remember me on this computer</span>
     <% end %>
+    <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
     <%= f.submit t("view.session.new.submit"), class: "btn btn-primary" %>
     <% end %>
     <p><%= t("view.session.new.new_user")%><%= link_to t("view.session.new.sign_up_now"), signup_path %></p>

@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token, :reset_token
+  attr_accessor :remember_token
 
+  # Before Method
 
-  before_create :create_activation_digest
-
+  # Before_save
   before_save :downcase_email
 
   # Validate Name
@@ -23,6 +23,7 @@ class User < ApplicationRecord
                      maximum: Settings.user.password.max_length},
             allow_nil: true
   has_secure_password
+  # public method
 
   # create  token and save  database in column remember_digest
   def remember
@@ -36,40 +37,14 @@ class User < ApplicationRecord
   end
 
   # Returns true if the given token matches the digest.
-  def authenticated? attribute, remember_token
-    digest = send("#{attribute}_digest")
-    return false unless digest
+  def authenticated? remember_token
+    return false unless remember_digest
 
-    BCrypt::Password.new(digest).is_password?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
-  # Activates an account.
-  def activate
-    update(activated: true)
-    update(activated_at: Time.zone.now)
-  end
+  # Class Method
 
-  # Sends activation email.
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
-  end
-
-  # Create token and save databse attribute reset_digest
-  def create_reset_digest
-    self.reset_token = User.new_token
-    update_columns(reset_digest: User.digest(reset_token),
-                   reset_send_at: Time.zone.now)
-  end
-
-  # use UserMailer chapter11 send email now
-  def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
-  end
-
-  # check time after sendMail
-  def password_reset_expired?
-    reset_send_at > 2.hours.ago
-  end
   class << self
     # return the hash digest of the given string
     def digest string
@@ -84,16 +59,11 @@ class User < ApplicationRecord
     end
   end
 
-  private
+  # Private method
 
-  # Save email user lowercase letter
+  private
+  # save email user lowercase letter
   def downcase_email
     email.downcase!
-  end
-
-  # Create token activated email
-  def create_activation_digest
-    self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token)
   end
 end

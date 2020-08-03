@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
-  before_action :check_user, only: %i(create)
+  def new
+    @user = User.new
+  end
 
   # Get Login
   def new
@@ -8,7 +10,8 @@ class SessionsController < ApplicationController
 
   # Post Login
   def create
-    if @user.activated?
+    @user = User.find_by(email: params[:session][:email].downcase)
+    if @user&.authenticate(params[:session][:password])
       log_in @user
       params[:session][:remember_me] == "1" ? remember(@user) : forget(@user)
       redirect_back_or @user
