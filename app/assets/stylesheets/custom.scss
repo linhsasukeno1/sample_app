@@ -2,37 +2,38 @@
 @import "bootstrap";
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+    -moz-box-sizing:
+    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:
+    border-box;
 }
 
 /* miscellaneous */
 .debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 45px;
+    @include box_sizing;
 }
 
 //Staticpage
 /* universal */
 body {
-
-  padding-top: 60px;
+    padding-top: 60px;
 }
 section {
-  overflow: auto;
+    overflow: auto;
 }
 textarea {
-  resize: vertical;
+    resize: vertical;
 }
 .center {
-  text-align: center;
+    text-align: center;
 }
 .center h1 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 /* header */
 #logo {
@@ -86,14 +87,11 @@ aside {
 }
 
 /* forms */
-input,
-textarea,
-select,
-.uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
+input, textarea, select, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+    @include box_sizing;
 }
 input {
   height: auto !important;
@@ -101,11 +99,11 @@ input {
 /* forms */
 
 #error_explanation {
-  color: red;
-  ul {
+color: red;
+ul {
     color: red;
     margin: 0 0 30px 0;
-  }
+}
 }
 .field_with_errors {
   @extend .has-error;
@@ -134,6 +132,14 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+.checkbox{
+    margin-top: -10px;
+    margin-bottom: 10px;
+    span {
+        margin-left: 20px;
+        font-weight: normal;
+    }
 }
 .checkbox{
     margin-top: -10px;

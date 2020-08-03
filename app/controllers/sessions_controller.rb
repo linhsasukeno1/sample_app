@@ -3,18 +3,13 @@ class SessionsController < ApplicationController
     @user = User.new
   end
 
-  # Get Login
-  def new
-    @user = User.new
-  end
-
   # Post Login
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user&.authenticate(params[:session][:password])
       log_in @user
       params[:session][:remember_me] == "1" ? remember(@user) : forget(@user)
-      redirect_back_or @user
+      redirect_to @user
     else
       flash[:warning] = t "controller.sessions.create.flash_not_activated"
       redirect_to root_url
